@@ -10,7 +10,7 @@ class UserController {
 
             return await UserServices.createUser(userData);
         } catch (error) {
-            if (error.errno === 19)
+            if (error.errno === 1062)
                 response.status(400).send("Email ou username já cadastrado");
             else
                 response.status(400).send(error);
