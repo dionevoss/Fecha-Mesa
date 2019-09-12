@@ -16,6 +16,14 @@ class UserController {
                 response.status(400).send(error);
         }
     }
+
+    async getId({ params, response }) {
+        try {
+            return await UserServices.GetId({ id: params.id });
+        } catch (error) {
+            response.status(400).send(error);
+        }
+    }
 }
 
 module.exports = UserController;

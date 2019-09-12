@@ -15,6 +15,16 @@ class UserServices {
 
         return await User.create(user)
     }
+
+    async GetId(user) {
+        const userFound = await User.findBy('id', user.id);
+        
+        if (userFound === null)
+            throw 'Id inexistente'
+
+        return userFound;
+    }
+    
 }
 
 
