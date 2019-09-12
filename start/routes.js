@@ -17,4 +17,5 @@
 const Route = use('Route')
 
 Route.on('/').render('welcome')
-Route.post("/User", "UserController.create");
+Route.post('/user', 'UserController.create');
+Route.get('/user/:id', 'UserController.getId')
