@@ -17,5 +17,9 @@
 const Route = use('Route')
 
 Route.on('/').render('welcome')
-Route.post('/user', 'UserController.create');
-Route.get('/user/:id', 'UserController.getId')
+Route.post('/users', 'UserController.create');
+Route.get('/users/:id', 'UserController.getId');
+Route.post("/auth", "AuthController.login");
+Route.put("/auth", "AuthController.updateToken")
+
+Route.get('/post', 'PostController.getAllPosts').middleware('auth');
