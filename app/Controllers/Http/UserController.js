@@ -24,6 +24,10 @@ class UserController {
             response.status(400).send(error);
         }
     }
+
+    async getAll() {
+        return await User.all();
+    }
 }
 
 module.exports = UserController;
