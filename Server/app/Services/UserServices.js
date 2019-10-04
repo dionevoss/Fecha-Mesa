@@ -4,8 +4,11 @@ const User = use('App/Models/User')
 
 class UserServices {
     async createUser(user) {
-        if (!user.username)
-            throw "Insira o nome do usuário";
+        if (!user.first_name)
+            throw "Insira o primeiro nome";
+            
+        if (!user.last_name)
+            throw "Insira o ultimo nome";
 
         if (!user.email)
             throw "Insira o email do usuário";
