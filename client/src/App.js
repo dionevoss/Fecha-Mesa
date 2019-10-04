@@ -18,7 +18,7 @@ class App extends Component{
 
  render() {
    return (
-     <h1>{users.name}</h1>
+     <h1>Ola, Mundo</h1>
    );
  }
 };
