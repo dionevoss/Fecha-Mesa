@@ -6,7 +6,7 @@ const User = use('App/Models/User')
 class UserController {
     async create({ request, response }) {
         try {
-            const userData = request.only(["username", "email", "password"]);
+            const userData = request.only(['first_name', 'last_name', 'email', 'password']);
 
             return await UserServices.createUser(userData);
         } catch (error) {
@@ -27,6 +27,29 @@ class UserController {
 
     async getAll() {
         return await User.all();
+    }
+
+    async updateUser({ params: { id }, request, response } ) {
+        const user = await User.findOrFail(id);
+
+        const userData = request.only(['first_name', 'last_name', 'email', 'password']);
+
+        user.merge(userData);
+        await user.save();
+
+        response.status(200).send(user);
+    }
+
+    async deleteUser({ params: { id }, request, response } ) {
+        const user = await User.findOrFail(id);
+
+        try {
+            await user.delete();
+
+            response.status(200).send({ message: 'Usuario excluido com sucesso.' })
+        } catch (error) {
+            response.status(400).send({ message: 'Não foi possivel deletar usuario.' });
+        }
     }
 }
 
