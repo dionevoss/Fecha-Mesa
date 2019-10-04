@@ -1,16 +1,26 @@
-import React from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 
 const api = axios.create({
   baseURL: 'http://127.0.0.1:3333'
 });
 
-function App() {
-  return (
-    <div className="App">
+class App extends Component{
+  state = {
+    users: []
+ };
 
-    </div>
-  );
-}
+ async componentDidMount() {
+   const { data: users } = await api.get('/users')
+
+   this.setState('users');
+ }
+
+ render() {
+   return (
+     <h1>{users.name}</h1>
+   );
+ }
+};
 
 export default App;
