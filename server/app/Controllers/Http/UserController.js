@@ -10,16 +10,16 @@ class UserController {
 
             return await UserServices.createUser(userData);
         } catch (error) {
-            if (error.errno === 1062)
-                response.status(400).send("Email ou username já cadastrado");
+            if (error.errno === 19)
+                response.status(400).send("E-mail já cadastrado.");
             else
                 response.status(400).send(error);
         }
     }
 
-    async getId({ params, response }) {
+    async getId({ params: { id }, response }) {
         try {
-            return await UserServices.GetId({ id: params.id });
+            return await UserServices.GetId({ id: id });
         } catch (error) {
             response.status(400).send(error);
         }
@@ -43,8 +43,11 @@ class UserController {
         response.status(200).send(user);
     }
 
-    async deleteUser({ params: { id }, request, response } ) {
+    async deleteUser({ params: { id }, response } ) {
         const user = await User.findOrFail(id);
+        
+        if(!user)
+            return 'ID não encontrado.';
 
         try {
             await user.delete();
