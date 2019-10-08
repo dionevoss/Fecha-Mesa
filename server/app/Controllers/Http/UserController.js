@@ -30,7 +30,10 @@ class UserController {
     }
 
     async updateUser({ params: { id }, request, response } ) {
-        const user = await User.findOrFail(id);
+        const user = await User.find(id);
+
+        if(!user)
+            return 'ID não encontrado.';
 
         const userData = request.only(['first_name', 'last_name', 'email', 'password']);
 
