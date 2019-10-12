@@ -20,9 +20,9 @@ Route.on('/').render('welcome')
 
 Route.post('/users', 'UserController.create');
 Route.get('/users/:id', 'UserController.getId').middleware('auth');
-Route.get('/users', 'UserController.getAll').middleware('auth');
-Route.put('/users/:id', 'UserController.updateUser').middleware('auth');
-Route.delete('/users/:id', 'UserController.deleteUser').middleware('auth');
+Route.get('/users', 'UserController.getAll');
+Route.put('/users/:id', 'UserController.updateUser')
+Route.delete('/users/:id', 'UserController.deleteUser')
 
 Route.post("/auth", "AuthController.login");
 Route.put("/auth", "AuthController.updateToken")
