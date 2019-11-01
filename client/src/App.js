@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { Component } from 'react';
+import "./styles/global";
+import Routes from './services/routes';
 
-import Routes from './utils/routes';
+class App extends Component {
+    render() {
+        return(
+            <Routes />
+        );
+    }
 
-const App = () => <Routes />
+}
 
 export default App;
