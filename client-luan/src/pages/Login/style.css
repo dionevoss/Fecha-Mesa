@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-size: 16px;
+}
+
+.main-form {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    background-color: #A9BCF5;
+}
+
+.form {
+    width: 600px;
+    padding: 55px;
+    margin: auto;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+    width: 400px;
+}
+
+.title-login-register {
+    font-family: fantasy;
+    color: #3f51b5;
+    padding: 10px;
+}
