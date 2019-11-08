@@ -23,12 +23,6 @@ const useStyles = makeStyles(theme => ({
       input: {
         display: 'none',
       },
-    button: {
-    margin: theme.spacing(1),
-    },
-    input: {
-    display: 'none',
-    },
 }));
 
 export default () => { 
