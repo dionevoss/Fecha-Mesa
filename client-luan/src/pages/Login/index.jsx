@@ -2,7 +2,8 @@ import React from 'react'
 import './style.css'
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button'
+import {Link} from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
     container: {
@@ -59,11 +60,11 @@ export default () => {
                 </div>
 
                 <div className='buttons'>
-                    <Button variant="contained" color="primary" className={classes.button}>
-                        Entrar
+                    <Button variant="contained" color="primary" className={classes.button} style={{}}>
+                        <Link class='primary-button' to='/'>Entrar</Link>
                     </Button>
-                    <Button color="primary" className={classes.button}>
-                        Cadastrar-se
+                    <Button color='primary' className={classes.button}>
+                        <Link to='/register'>Cadastrar-se</Link>
                     </Button>
                 </div>
             </form>
