@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
         width: 400,
     },
     button: {
-        margin: theme.spacing(1),
+        margin: theme.spacing(2),
         width: '150px',
     },
     input: {
@@ -38,7 +38,7 @@ export default () => {
                         className={classes.textField} 
                         label="E-mail" 
                         margin="normal"
-                     />
+                    />
                 </div>
 
                 <div>
