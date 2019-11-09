@@ -54,10 +54,10 @@ export default () => {
 
                 <div>
                     <Button className={classes.button}>
-                        <Link to='/register'>Cadastrar-se</Link>
+                        <Link to='/login/register'>Cadastrar-se</Link>
                     </Button>
-                    <Button variant="contained" color="primary" className={classes.button} style={{}}>
-                        <Link class='color-1' to='/'>Entrar</Link>
+                    <Button variant="contained" color="primary" className={classes.button}>
+                        <Link to='/' class='color-1' >Entrar</Link>
                     </Button>
                 </div>
             </form>

@@ -2,21 +2,17 @@ import React from 'react';
 import './style-global.css'
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import Home from './pages/Home/index'
-import Login from './pages/Login/index'
-import Register from './pages/Register/index'
+import Identification from './components/Indetification/index'
 import { MuiThemeProvider } from '@material-ui/core/styles';
-import Color from './color'
-
-const theme = Color
+import color from './color'
 
 const App = () => {
     return(
-        <MuiThemeProvider theme={theme}>
+        <MuiThemeProvider theme={color}>
             <BrowserRouter>
                 <Switch> 
                     <Route exact path='/' component={Home} />
-                    <Route exact path='/login' component={Login} />
-                    <Route exact path='/register' component={Register} />
+                    <Route path='/login' component={Identification} />
                 </Switch>
             </BrowserRouter>
         </MuiThemeProvider>
