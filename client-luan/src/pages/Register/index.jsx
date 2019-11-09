@@ -1,27 +1,10 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import './style.css'
 import { makeStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button'
 
 const useStyles = makeStyles(theme => ({
-    backgroundLogin: {
-        backgroundColor: '#A9BCF5',
-        width: '100%',
-        height: '100vh',
-        display: 'flex',
-        flexWrap: 'wrap',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    h1: {
-        padding: '10px',
-        fontSize: '2.5em'
-    },
-    h4: {
-        padding: '5px'
-    },
     container: {
         display: 'flex',
         flexWrap: 'wrap',
@@ -49,11 +32,11 @@ export default () => {
       const classes = useStyles()
       
       return (
-          <div className={classes.backgroundLogin}>
-            <div>
+          <div className='main-form-login' >
+            <div className='form'>
                 <form className={classes.container}>
-                    <h1 className={classes.h1}>Cadastro</h1>
-                    <h4 className={classes.h4}>Preenchar as informações abaixo para finalizar cadastro</h4>
+                    <h1 className='title-login color-2'>CADASTRO</h1>
+                    <h4 className='title-login color-2'>Preenchar as informações abaixo para finalizar cadastro</h4>
 
                     <Input
                         className={classes.input}
@@ -98,7 +81,7 @@ export default () => {
                     />
 
                     <Button variant="contained" color='primary' className={classes.button}>
-                        <Link className='btn-primary' >Finalizar Cadastro</Link>
+                        <Link className='color-1' >Finalizar Cadastro</Link>
                     </Button>
 
                     <Button color='primary' className={classes.button}>
