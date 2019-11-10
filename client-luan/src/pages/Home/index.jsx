@@ -1,4 +1,16 @@
 import React from 'react'
-import './style.css'
+import User from './../../pages/User'
 
-export default () => <h1>Home</h1>
+{/* 
+    infoUser 
+    Menu {
+        grupos
+        editar perfil
+    }
+*/}
+
+export default () => {
+    return (
+        <User />
+    )
+}

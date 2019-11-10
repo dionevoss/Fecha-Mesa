@@ -1,0 +1,25 @@
+.main {
+    color: #f2f2f2;
+}
+.user {
+    margin: 20px;
+    -webkit-text-stroke-width: 1px; /* largura da borda */
+    -webkit-text-stroke-color: #BDBDBD; /* cor da borda */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.user > label {
+    font-size: 1.8em;
+    font-weight: 700;
+    width: 55%;
+}
+
+.logo {
+    width: 35%;
+    text-align: center;
+    font-family: fantasy;
+    font-size: 2.5em;
+}
