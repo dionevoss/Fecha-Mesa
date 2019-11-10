@@ -1,8 +1,8 @@
 import React from 'react';
 import './style-global.css'
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
-import Home from './components/Home'
-import Identification from './components/Indetification'
+import Home from './pages/Home'
+import Identification from './pages/Indetification'
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import color from './color'
 

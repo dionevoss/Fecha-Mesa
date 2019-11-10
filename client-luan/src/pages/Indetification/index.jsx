@@ -1,7 +1,7 @@
 import React from 'react'
 import {Switch, Route} from 'react-router-dom'
-import Login from './../../pages/Login/index'
-import Register from './../../pages/Register/index'
+import Login from './../../components/Login/index'
+import Register from './../../components/Register/index'
 
 export default () => {
     return  (
