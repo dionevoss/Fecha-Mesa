@@ -3,9 +3,6 @@
 }
 .user {
     margin: 20px;
-    -webkit-text-stroke-width: 1px; /* largura da borda */
-    -webkit-text-stroke-color: #BDBDBD; /* cor da borda */
-
     display: flex;
     flex-direction: row;
     align-items: center;
