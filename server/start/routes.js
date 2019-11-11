@@ -18,14 +18,14 @@ const Route = use('Route')
 
 Route.on('/').render('welcome')
 
-Route.post('/users', 'UserController.create');
-Route.get('/users/:id', 'UserController.getId');
-Route.get('/users', 'UserController.getAll');
+Route.post('/users', 'UserController.create')
+Route.get('/users/:id', 'UserController.getId')
+Route.get('/users', 'UserController.getAll')
 Route.put('/users/:id', 'UserController.updateUser')
 Route.delete('/users/:id', 'UserController.deleteUser')
 
-Route.post("/auth", "AuthController.login");
+Route.post("/auth", "AuthController.login")
 Route.put("/auth", "AuthController.updateToken")
 Route.post("/logout", "AuthController.logout")
 
-Route.get('/post', 'PostController.getAllPosts').middleware('auth');
+Route.get('/post', 'PostController.getAllPosts')
