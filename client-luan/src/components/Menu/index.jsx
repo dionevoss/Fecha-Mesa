@@ -6,8 +6,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-
-import Login from './../Login'
+import Groups from './../Groups'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -80,13 +79,13 @@ export default function NavTabs() {
           <LinkTab label="Sair" href="/spam" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
-      <TabPanel value={value} index={0}>
-        GRUPOS
+      <TabPanel className='background-menu' value={value} index={0}>
+        <Groups />
       </TabPanel>
-      <TabPanel value={value} index={1}>
+      <TabPanel className='background-menu' value={value} index={1}>
         PERFIL
       </TabPanel>
-      <TabPanel value={value} index={2}>
+      <TabPanel className='background-menu' value={value} index={2}>
         SAIR
       </TabPanel>
     </div>

@@ -48,3 +48,8 @@ a {
 .color-2 {
     color: #00897b;
 }
+
+.background-menu {
+    background: #f2f2f2;
+    height: 100%;
+}
