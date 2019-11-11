@@ -1,0 +1,19 @@
+.groups-table-main {
+    padding: 20px;
+}
+
+.groups-table {
+    width: 100%;
+    text-align: left;
+}
+
+.groups-table > tr > td {
+    width: 70%;
+    margin-left: 15px;
+    padding: 10px;
+    border-bottom: #212121 solid 1px;
+}
+
+.actions {
+    widows: 30%;
+}
