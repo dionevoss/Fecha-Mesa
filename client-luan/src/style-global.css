@@ -16,6 +16,11 @@ a {
     height: 100%;
 }
 
+.main {
+    background: #f2f2f2;
+    height: 100vh;
+}
+
 .main-form-login {
     display: flex;
     align-items: center;

@@ -21,7 +21,7 @@ export default () => {
     const classes = useStyles();
 
     return(
-        <div className='main'>
+        <div className='main-user'>
             <div className='user'>
                 <Grid>
                     <Avatar alt="" src="" className={classes.bigAvatar} />

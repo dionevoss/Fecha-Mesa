@@ -12,7 +12,7 @@ import Menu from '../../components/Menu'
 
 export default () => {
     return (
-        <div>
+        <div className='main'>
             <User />
             <Menu />
         </div>
