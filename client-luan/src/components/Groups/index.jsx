@@ -3,6 +3,9 @@ import './style.css'
 import {Paper} from '@material-ui/core'
 import Button from '@material-ui/core/Button'
 import { makeStyles } from '@material-ui/core/styles'
+import Grid from '@material-ui/core/Grid'
+import DeleteIcon from '@material-ui/icons/Delete'
+import ExitToApp from '@material-ui/icons/ExitToApp'
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -22,6 +25,9 @@ const useStyles = makeStyles(theme => ({
         height: '50px',
         fontSize: '1.5em',
         textAlign: 'center',
+    },
+    root: {
+        color: theme.palette.text.primary,
     },
 }));
 
@@ -57,7 +63,10 @@ export default () => {
                                 É US guri
                             </td>
                             <td className='actions'>
-                                Agua
+                                <Grid>
+                                    <DeleteIcon />
+                                    <ExitToApp />
+                                </Grid>
                             </td>
                         </tr>
 
