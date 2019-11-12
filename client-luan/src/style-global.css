@@ -58,3 +58,12 @@ a {
     background: #f2f2f2;
     height: 100%;
 }
+
+.warning {
+    color: red;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+
+}

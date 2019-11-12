@@ -8,12 +8,14 @@
 }
 
 .groups-table > tr > td {
-    width: 70%;
+    width: 90%;
     margin-left: 15px;
     padding: 10px;
     border-bottom: #212121 solid 1px;
 }
 
 .actions {
-    widows: 30%;
+    width: 10%;
+    border: none;
+    text-align: center;
 }
