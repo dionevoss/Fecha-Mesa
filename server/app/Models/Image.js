@@ -4,6 +4,13 @@
 const Model = use('Model')
 
 class Image extends Model {
+    static get computed() {
+        return ['url']
+    }
+
+    getUrl({ path }) {
+        return `${process.env.APP_URL}/images/${path}`
+    }
 }
 
 module.exports = Image
