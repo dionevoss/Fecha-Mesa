@@ -11,6 +11,8 @@ import Menu from '../../components/Menu'
 */}
 
 export default () => {
+    document.body.style.background = 'white'
+
     return (
         <div className='main'>
             <User />
