@@ -1,89 +1,67 @@
-import React from 'react'
-import './style.css'
+import React, {useState, useEffect} from 'react'
+import CreateGroup from './CreateGroup'
+import {GroupTable, GroupTableMain, MainCreateYourGroup, ArrowBackStyle, ButtonStyle, PaperStyle} from './style.js'
 import {Paper} from '@material-ui/core'
-import Button from '@material-ui/core/Button'
-import { makeStyles } from '@material-ui/core/styles'
-import Grid from '@material-ui/core/Grid'
 import DeleteIcon from '@material-ui/icons/Delete'
 import ExitToApp from '@material-ui/icons/ExitToApp'
 
-const useStyles = makeStyles(theme => ({
-    paper: {
-        padding: '20px',
-        marginBottom: '15px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        textAlign: 'center',
-    },
-    mainCreateGroup: {
-        width: '80%',
-    },
-    button: {
-        margin: theme.spacing(2),
-        width: '350px',
-        height: '50px',
-        fontSize: '1.5em',
-        textAlign: 'center',
-    },
-    root: {
-        color: theme.palette.text.primary,
-    },
-}));
-
 export default () => {
-    const classes = useStyles()
-    
-    return (
-        <div>
-            <Paper className={classes.paper}>
-                <div className={classes.mainCreateGroup}>
-                    <h2>
-                        Junte seus amigos e crie um grupo para compartilhar novidades e 
-                        agendar melhor suas jogatinas clicando no link abaixo
-                    </h2>
+    const [createGroup, setCreateGroup] = useState(false)
 
-                    <Button variant="contained" color="primary" className={classes.button}>Criar grupo</Button>
-                </div>
-            </Paper>
-                
-            <Paper>
-                <div className='groups-table-main'>
-                    <table className='groups-table'>
-                        <tr>
-                            <th>
-                                Grupos
-                            </th>
-                            <th>
-                                Ações
-                            </th>
-                        </tr>
-                        <tr>
-                            <td>
-                                É US guri
-                            </td>
-                            <td className='actions'>
-                                <Grid>
+    useEffect(() => {
+        return () => false
+    }, [createGroup])
+
+    if(!createGroup) {
+        return (
+            <div>
+                <Paper>
+                    <PaperStyle>
+                        <MainCreateYourGroup>
+                            <h2>
+                                Junte seus amigos e crie um grupo para compartilhar novidades e 
+                                agendar melhor suas jogatinas clicando no link abaixo
+                            </h2>
+
+                            <ButtonStyle variant="contained" color="primary" onClick={() => setCreateGroup(true)}>Criar grupo</ButtonStyle>
+                        </MainCreateYourGroup>
+                    </PaperStyle>
+                </Paper>
+            
+                <Paper>
+                    <GroupTableMain>
+                        <GroupTable>
+                            <tr>
+                                <th>
+                                    Grupos
+                                </th>
+                                <th>
+                                    Ações
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    É US guri
+                                </td>
+                                <td className='actions'>
                                     <DeleteIcon />
                                     <ExitToApp />
-                                </Grid>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                É US guri
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                É US guri
-                            </td>
-                        </tr>
-                    </table>
-                </div>
+                                </td>
+                            </tr>
+                        </GroupTable>
+                    </GroupTableMain>
+                </Paper>
+            </div>
+        )
+    }
+    else {
+        return ( 
+            <Paper>
+                <ArrowBackStyle onClick={() => setCreateGroup(false)} />
+                <PaperStyle>
+                    <CreateGroup />
+                </PaperStyle>
             </Paper>
-        </div>
-    )
+        )
+    }
 }
