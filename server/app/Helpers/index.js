@@ -25,6 +25,20 @@ const Helpers = use('Helpers')
      return string
  }
 
+ const imageUpload = async (file, path = null) => {
+    path = path ? path : Helpers.publicPath('uploads')
+    const random_name = await str_random(30)
+    let filename = `${new Date().getTime()}-${random_name}.${file.subtype}`
+
+    //rename and move file
+    await file.move(path, {
+        name: filename
+    })
+
+    return file
+ }
+
  module.exports = {
-     str_random
+     str_random,
+     imageUpload
  }
