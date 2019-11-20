@@ -17,7 +17,7 @@ class UserController {
         }
     }
 
-    async getId({ params: { id }, response }) {
+    async show({ params: { id }, response }) {
         try {
             return await UserServices.GetId({ id: id });
         } catch (error) {
@@ -25,11 +25,11 @@ class UserController {
         }
     }
 
-    async getAll() {
+    async index() {
         return await User.all();
     }
 
-    async updateUser({ params: { id }, request, response } ) {
+    async update({ params: { id }, request, response } ) {
         const user = await User.find(id);
 
         if(!user)
@@ -43,7 +43,7 @@ class UserController {
         response.status(200).send(user);
     }
 
-    async deleteUser({ params: { id }, response } ) {
+    async destroy({ params: { id }, response } ) {
         const user = await User.findOrFail(id);
         
         if(!user)

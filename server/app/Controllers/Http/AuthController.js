@@ -5,8 +5,8 @@ const AuthServices = use('App/Services/AuthServices')
 
 class AuthController {
     async login({ request, auth }) {
-        const { email, pass } = request.all()
-        return AuthServices.login(email, pass, auth);
+        const { email, password } = request.all()
+        return AuthServices.login(email, password, auth);
     }
 
     async updateToken({ request, auth }) {
