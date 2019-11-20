@@ -18,24 +18,28 @@ const Route = use('Route')
 
 Route.on('/').render('welcome')
 
+Route.get('/users', 'UserController.index')
 Route.post('/users', 'UserController.create')
 Route.get('/users/:id', 'UserController.show')
-Route.get('/users', 'UserController.getAll')
 Route.put('/users/:id', 'UserController.update')
 Route.delete('/users/:id', 'UserController.destroy')
 
-Route.post('/groups', 'GroupController.create')
+Route.get('/groups', 'GroupController.index')
+Route.post('/users/:id/groups', 'GroupController.create')
 Route.get('/groups/:id', 'GroupController.show')
-Route.get('/groups', 'GroupController.getAll')
-Route.put('/groups', 'GroupController.update')
-Route.delete('/groups/:id', 'GroupController.destroy')
+Route.put('/users/:id/groups/:id', 'GroupController.update')
+Route.delete('/users/:id/groups/:id', 'GroupController.destroy')
 
-Route.post('/images', 'ImageController.store')
-Route.get('/images/:id', 'ImageController.show')
-Route.delete('/images/:id', 'ImageController.destroy')
+Route.get('/posts', 'PostController.index')
+Route.post('/users/:id/posts', 'PostController.create')
+Route.get('/posts/:id', 'PostController.show')
+
+Route.get('/images', 'ImageController.index')
+Route.post('/users/:id/images', 'ImageController.store')
+Route.get('/images/:path', 'ImageController.show')
+Route.put('/users/:id/images/:id', 'ImageController.update')
+Route.delete('/users/:id/images/:id', 'ImageController.destroy')
 
 Route.post("/auth", "AuthController.login")
 Route.put("/auth", "AuthController.updateToken")
 Route.post("/logout", "AuthController.logout")
-
-Route.get('/post', 'PostController.getAllPosts')
