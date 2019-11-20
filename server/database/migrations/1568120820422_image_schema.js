@@ -7,15 +7,11 @@ class ImageSchema extends Schema {
   up () {
     this.create('images', (table) => {
       table.increments()
-      table.integer('user_id').unsigned()
-      table.integer('event_id').unsigned()
-      table.integer('post_id').unsigned()
-      table.string('path').notNullable()
+      table.string('path', 255).notNullable()
+      table.integer('size').unsigned()
+      table.string('original_name', 100)
+      table.string('extension', 10)
       table.timestamps()
-
-      table.foreign('user_id').references('id').inTable('users').onDelete('cascade')
-      table.foreign('event_id').references('id').inTable('events').onDelete('cascade')
-      table.foreign('post_id').references('id').inTable('posts').onDelete('cascade')
     })
   }
 
