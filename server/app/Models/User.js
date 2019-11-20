@@ -46,6 +46,10 @@ class User extends Model {
   images () {
     return this.hasOne('App/Models/Image')
   }
+
+  groups () {
+    return this.hasMany('App/Models/Group')
+  }
 }
 
 module.exports = User

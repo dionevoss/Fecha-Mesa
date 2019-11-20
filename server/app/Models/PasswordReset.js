@@ -3,6 +3,8 @@
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Model = use('Model')
 
+const { str_random } = use('App/Helpers')
+
 class PasswordReset extends Model {
     static boot() {
         super.boot()
@@ -12,7 +14,7 @@ class PasswordReset extends Model {
 
             const expires_at = new Date();
 
-            expires_at.seetMinutes(now.getMinutes() + 30);
+            expires_at.setMinutes(now.getMinutes() + 30);
 
             model.expires_at = expires_at;
         });
