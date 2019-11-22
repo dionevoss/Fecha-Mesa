@@ -2,16 +2,28 @@
 
 const UserServices = use('App/Services/UserServices')
 const User = use('App/Models/User')
+const Mail = use('Mail')
 
 class UserController {
     async create({ request, response }) {
         try {
             const userData = request.only(['first_name', 'last_name', 'email', 'password']);
 
-            return await UserServices.createUser(userData);
+            const user = await UserServices.createUser(userData)
+            
+            /*
+            await Mail.send('emails.welcome', { userData }, (message) => {
+                message
+                    .to(user.email)
+                    .from('no-reply@fechamesa.com')
+                    .subject('Bem vindo')
+            })
+            */
+
+            response.status(201).send({ message: 'Regitrado com sucesso!' })
         } catch (error) {
             if (error.errno === 19)
-                response.status(400).send("E-mail já cadastrado.");
+                response.status(400).send({ message: 'Esse e-mail já esta cadastrado!' });
             else
                 response.status(400).send(error);
         }

@@ -20,17 +20,22 @@ module.exports = {
   |--------------------------------------------------------------------------
   |
   | Here we define configuration for sending emails via SMTP.
-  |
+  |  
+  :user_name => 'afa6884d7d853e',
+  :password => '0ad402f716540f',
+  :address => 'smtp.mailtrap.io',
+  :domain => 'smtp.mailtrap.io',
+  :port => '2525',
   */
   smtp: {
     driver: 'smtp',
     pool: true,
-    port: Env.get('SMTP_PORT', 2525),
-    host: Env.get('SMTP_HOST'),
+    port: 2525,
+    host: 'smtp.mailtrap.io',
     secure: false,
     auth: {
-      user: Env.get('MAIL_USERNAME'),
-      pass: Env.get('MAIL_PASSWORD')
+      user: 'afa6884d7d853e',
+      pass: '0ad402f716540f'
     },
     maxConnections: 5,
     maxMessages: 100,
