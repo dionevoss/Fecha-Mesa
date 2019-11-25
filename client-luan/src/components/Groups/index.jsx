@@ -54,14 +54,12 @@ export default () => {
             </div>
         )
     }
-    else {
-        return ( 
-            <Paper>
-                <ArrowBackStyle onClick={() => setCreateGroup(false)} />
-                <PaperStyle>
-                    <CreateGroup />
-                </PaperStyle>
-            </Paper>
-        )
-    }
+
+    return ( 
+        <Paper>
+            <ArrowBackStyle onClick={() => setCreateGroup(false)} />
+            
+            <CreateGroup />
+        </Paper>
+    )
 }
