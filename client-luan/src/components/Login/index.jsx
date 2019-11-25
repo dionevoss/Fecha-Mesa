@@ -1,5 +1,5 @@
 import React from 'react'
-import {MainFormStyle, FormStyle, TextFormStyle, ButtonStyle} from './../../style'
+import {MainFormStyle, FormStyle, TextFormStyle, ButtonStyle} from './../../themes/styled'
 import {Link} from 'react-router-dom'
 
 export default () => { 

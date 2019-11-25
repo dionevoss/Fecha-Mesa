@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {MainFormStyle, FormStyle, TextFormStyle, ButtonStyle, WarningStyle} from './../../style'
+import {MainFormStyle, FormStyle, TextFormStyle, ButtonStyle, WarningStyle} from './../../themes/styled'
 import {Link} from 'react-router-dom'
 import api from './../../services/api'
 

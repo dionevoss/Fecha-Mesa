@@ -1,12 +1,11 @@
 import React from 'react'
-import {TextFieldStyle, MainStyle, ButtonCreateGroupStyle, TextareaStyle} from './style'
-import {SpacingStyle} from './../../../themes/styled'
+import {SpacingStyle, TextFieldStyle, EditeFormStyle, ButtonStyle, TextareaStyle} from './../../../themes/styled'
 
 export default () => {
     
     
     return(
-        <MainStyle>
+        <EditeFormStyle>
             <h1>Preencha os campos abaixo para criar seu novo grupo</h1>
             <SpacingStyle />
 
@@ -16,14 +15,14 @@ export default () => {
             <TextareaStyle placeholder='Dê uma breve descrição do seu grupo' />
             <SpacingStyle />
 
-            <ButtonCreateGroupStyle
+            <ButtonStyle
                 variant="contained"
                 color="primary"
             >
                 Criar Grupo
-            </ButtonCreateGroupStyle>
+            </ButtonStyle>
             <SpacingStyle padding='20' />
 
-        </MainStyle>
+        </EditeFormStyle>
     )
 }

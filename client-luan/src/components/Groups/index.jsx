@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
 import CreateGroup from './CreateGroup'
 import TableGroups from './TableGroups'
-import {MainCreateYourGroup, ArrowBackStyle, ButtonStyle, PaperStyle} from './style.js'
+import {MainCreateYourGroup, ButtonStyle, PaperStyle} from './style'
+import {ArrowBackStyle} from './../../themes/styled'
 import {SpacingStyle} from './../../themes/styled'
 import {Paper} from '@material-ui/core'
 
