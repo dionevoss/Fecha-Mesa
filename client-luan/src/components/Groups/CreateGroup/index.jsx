@@ -1,5 +1,6 @@
 import React from 'react'
-import {TextFieldStyle, MainStyle, ButtonCreateGroupStyle, SpacingStyle, TextareaStyle} from './style'
+import {TextFieldStyle, MainStyle, ButtonCreateGroupStyle, TextareaStyle} from './style'
+import {SpacingStyle} from './../../../themes/styled'
 
 export default () => {
     

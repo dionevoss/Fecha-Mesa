@@ -18,11 +18,6 @@ export const MainStyle = styled.div`
     margin: auto;
 `
 
-export const SpacingStyle = styled.div`
-    padding: 10px;
-    padding: ${props => `${props.padding}px`};
-`
-
 export const TextareaStyle = styled.textarea`
     resize: none;
     height: 100px;
