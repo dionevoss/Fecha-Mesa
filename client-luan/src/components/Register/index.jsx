@@ -94,7 +94,7 @@ export default () => {
 
                 <WarningStyle>{warning}</WarningStyle>
 
-                <ButtonStyle variant="contained" color='primary' width='400' fontColor='f2f2f2' onClick={passwordVerification}>
+                <ButtonStyle variant="contained" color='primary' width='400' colors='f2f2f2' onClick={passwordVerification}>
                     <Link className='color-1'>Finalizar Cadastro</Link>
                 </ButtonStyle>
 

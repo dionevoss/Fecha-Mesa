@@ -30,7 +30,7 @@ export default () => {
                     <ButtonStyle width='150'>
                         <Link to='/login/register'>Cadastrar-se</Link>
                     </ButtonStyle>
-                    <ButtonStyle variant="contained" color="primary" width='150' fontColor='f2f2f2'>
+                    <ButtonStyle variant="contained" color="primary" width='150' colors='f2f2f2'>
                         <Link to='/'  >Entrar</Link>
                     </ButtonStyle>
                 </div>

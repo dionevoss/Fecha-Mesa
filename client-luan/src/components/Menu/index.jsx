@@ -7,6 +7,7 @@ import Tab from '@material-ui/core/Tab'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 import Groups from './../Groups'
+import Exit from './../Exit'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props
@@ -86,7 +87,7 @@ export default function NavTabs() {
         PERFIL
       </TabPanel>
       <TabPanel className='background-menu' value={value} index={2}>
-        SAIR
+        <Exit />
       </TabPanel>
     </div>
   )

@@ -35,6 +35,7 @@ export const TextFormStyle = styled(TextField)`
 
 export const ButtonStyle = styled(Button)`
     && {
+        width: ${props => `${props.widthP}%`};
         width: ${props => `${props.width}px`};
         margin: 10px;
     }
@@ -44,7 +45,7 @@ export const ButtonStyle = styled(Button)`
         color: #00897b;
         width: 100%;
         height: 100%;
-        color: ${props => `#${props.fontColor}`};
+        color: ${props => `#${props.colors}`};
     }
 `
 
@@ -72,6 +73,10 @@ export const EditeFormStyle = styled.div`
     justify-content: flex-end;
     flex-direction: column;
     margin: auto;
+
+    h1, h2, h3, h4 {
+        text-align: center;
+    }
 `
 
 export const TextareaStyle = styled.textarea`
