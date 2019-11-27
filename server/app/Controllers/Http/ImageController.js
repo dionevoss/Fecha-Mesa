@@ -15,7 +15,6 @@ class ImageController {
 
     async store({ auth, request, response }) {
         try {
-            const { id } = auth.user
             const fileJar = request.file('images', {
                 types: ['image'],
                 size: '5mb'
@@ -27,9 +26,9 @@ class ImageController {
                     const image = await Image.create({
                         path: file.fileName,
                         size: file.size,
-                        user_id: id,
                         original_name: file.clientName,
-                        extension: file.subtype
+                        extension: file.subtype,
+                        user_id: auth.user.id
                     })
 
 
