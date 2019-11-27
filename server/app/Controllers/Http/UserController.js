@@ -3,9 +3,15 @@
 const UserServices = use('App/Services/UserServices')
 const User = use('App/Models/User')
 const Mail = use('Mail')
+const Database = use('Database')
 
 class UserController {
-    async create({ request, response }) {
+    
+    async index() {
+        return await User.all();
+    }
+
+    async store({ request, response }) {
         try {
             const userData = request.only(['first_name', 'last_name', 'email', 'password']);
 
@@ -31,21 +37,20 @@ class UserController {
 
     async show({ params: { id }, response }) {
         try {
-            return await UserServices.GetId({ id: id });
+            const user = await User.findOrFail(id)
+
+            await user.load('images')
+            return user;
         } catch (error) {
             response.status(400).send(error);
         }
     }
 
-    async index() {
-        return await User.all();
-    }
+    async update({ params: { id }, auth, request, response } ) {
+        const user = await User.findOrFail(id)
 
-    async update({ params: { id }, request, response } ) {
-        const user = await User.find(id);
-
-        if(!user)
-            return 'ID não encontrado.';
+        if(user.id !== auth.user.id)
+            return response.status(401).send()
 
         const userData = request.only(['first_name', 'last_name', 'email', 'password']);
 
@@ -55,11 +60,11 @@ class UserController {
         response.status(200).send(user);
     }
 
-    async destroy({ params: { id }, response } ) {
+    async destroy({ params: { id }, auth, response } ) {
         const user = await User.findOrFail(id);
-        
-        if(!user)
-            return 'ID não encontrado.';
+
+        if(user.id !== auth.user.id)
+            return response.status(401).send()
 
         try {
             await user.delete();

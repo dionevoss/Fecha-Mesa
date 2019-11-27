@@ -50,6 +50,10 @@ class User extends Model {
   groups () {
     return this.hasMany('App/Models/Group')
   }
+
+  members () {
+    return this.hasMany('App/Models/Member')
+  }
 }
 
 module.exports = User
