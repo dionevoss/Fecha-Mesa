@@ -16,30 +16,44 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
-Route.on('/').render('welcome')
+Route.group(() => {
+    Route.resource('users', 'UserController')
+        .apiOnly()
+        .middleware(new Map([
+            [['update', 'destroy'],['auth']]
+        ]))
+});
 
-Route.get('/users', 'UserController.index')
-Route.post('/users', 'UserController.create')
-Route.get('/users/:id', 'UserController.show')
-Route.put('/users/:id', 'UserController.update')
-Route.delete('/users/:id', 'UserController.destroy')
+Route.group(() => {
+    Route.resource('groups', 'GroupController')
+        .apiOnly()
+}).middleware('auth');
 
-Route.get('/groups', 'GroupController.index')
-Route.post('/users/:id/groups', 'GroupController.create')
-Route.get('/groups/:id', 'GroupController.show')
-Route.put('/users/:id/groups/:id', 'GroupController.update')
-Route.delete('/users/:id/groups/:id', 'GroupController.destroy')
+Route.group(() => {
+    Route.resource('posts', 'PostController')
+        .apiOnly()
+        .except(['update'])
+}).middleware('auth');
 
-Route.get('/posts', 'PostController.index')
-Route.post('/users/:id/posts', 'PostController.create')
-Route.get('/posts/:id', 'PostController.show')
+Route.group(() => {
+    Route.resource('images', 'ImageController')
+        .apiOnly()
+        .except('show')
+        .middleware(new Map([
+            [['store', 'update', 'destroy'], ['auth']]
+        ]))
+})
 
-Route.get('/images', 'ImageController.index')
-Route.post('/users/:id/images', 'ImageController.store')
+Route.post('/friend/:id', 'FriendController')
+
+
 Route.get('/images/:path', 'ImageController.show')
-Route.put('/users/:id/images/:id', 'ImageController.update')
-Route.delete('/users/:id/images/:id', 'ImageController.destroy')
 
 Route.post("/auth", "AuthController.login")
 Route.put("/auth", "AuthController.updateToken")
-Route.post("/logout", "AuthController.logout")
+
+
+
+Route.post('/groups/:id/members', 'MemberController.store')
+Route.get('/members', 'MemberController.index')
+Route.get('/members/:id', 'MemberController.show')
