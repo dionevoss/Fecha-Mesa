@@ -8,6 +8,10 @@ class Group extends Model {
         return this.belongsTo('App/Models/User')
     }
 
+    members () {
+        return this.hasMany('App/Models/Member')
+    }
+
     images () {
         return this.hasOne('App/Models/Image')
     }

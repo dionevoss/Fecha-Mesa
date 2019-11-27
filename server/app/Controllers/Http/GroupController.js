@@ -10,13 +10,11 @@ class GroupController {
     return await Group.all()
   }
 
-  async create ({ auth, request, response }) {
+  async store ({ auth, request, response }) {
     try {
-      const groupData = request.only(['name'])
-      const { id } = auth.user
-  
-      console.log(groupData)
-      await Group.create({ ...groupData, user_id: id })
+      const groupData = request.only(['name', 'description'])
+
+      await Group.create({ user_id: auth.user.id, ...groupData })
       response.status(201).send({ message: 'Grupo criado com sucesso!' })
     } catch (error) {
       if (error.errno === 19)
@@ -25,24 +23,23 @@ class GroupController {
     }
   }
 
-  async store ({ request, response }) {
-  }
-
   async show ({ params: { id }, response }) {
     try {
       const group = await Group.findOrFail(id)
-
-      return response.status(200).send(group)
+      
+      await group.load('members')
+      return group;
     } catch (error) {
-      response.status(400).send({ message: 'Ocorreu um erro'})
+      response.status(400).send({ message: 'Ocorreu um erro.'})
     }
   }
 
-  async edit ({ auth, request, response }) {
-  }
-
-  async update ({ params: { id }, request, response }) {
+  async update ({ params: { id }, auth, request, response }) {
     const group = await Group.findOrFail(id)
+    
+    if(group.user_id != auth.user.id){
+      return response.status(401).send()
+    }
 
     const groupData = request.only(['description'])
 
@@ -52,14 +49,17 @@ class GroupController {
     response.status(200).send(group)
   }
 
-  async destroy ({ params: { id }, request, response }) {
+  async destroy ({ params: { id }, auth, response }) {
     try {
       const group = await Group.findOrFail(id)
+      
+      if(group.user_id != auth.user.id){
+        return response.status(401).send()
+      }
 
       await group.delete()
       response.status(200).send({ message: 'Grupo excluido!'})
     } catch (error) {
-      console.log(error)
       response.status(400).send({ message: 'Ocorreu um erro.' })
     }
   }
