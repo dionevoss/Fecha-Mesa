@@ -6,7 +6,8 @@ import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
-import Groups from './../Groups'
+import Group from './../Group'
+import EditeUser from './../EditeUser'
 import Exit from './../Exit'
 
 function TabPanel(props) {
@@ -75,16 +76,16 @@ export default function NavTabs() {
           onChange={handleChange}
           aria-label="nav tabs example"
         >
-          <LinkTab label="Grupos" href="/drafts" {...a11yProps(0)} />
+          <LinkTab label="Home" href="/drafts" {...a11yProps(0)} />
           <LinkTab label="Editar Perfil" href="/trash" {...a11yProps(1)} />
           <LinkTab label="Sair" href="/spam" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
       <TabPanel className='background-menu' value={value} index={0}>
-        <Groups />
+        <Group />
       </TabPanel>
       <TabPanel className='background-menu' value={value} index={1}>
-        PERFIL
+        <EditeUser />
       </TabPanel>
       <TabPanel className='background-menu' value={value} index={2}>
         <Exit />
