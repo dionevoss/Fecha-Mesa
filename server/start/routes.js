@@ -33,7 +33,7 @@ Route.group(() => {
     Route.resource('posts', 'PostController')
         .apiOnly()
         .except(['update'])
-}).middleware('auth');
+});
 
 Route.group(() => {
     Route.resource('images', 'ImageController')
