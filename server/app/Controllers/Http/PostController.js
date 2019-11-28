@@ -2,14 +2,17 @@
 
 const Post = use('App/Models/Post')
 const PostServices = use('App/Services/PostServices')
+const Database = use('Database')
 
 class PostController {
 
     async index() {
-        return await Post.all()
+        return await Database
+            .table('posts')
+            .innerJoin('users', 'posts.id', 'users.id')
     }
 
-    async create({ auth, request, response }) {
+    async store({ auth, request, response }) {
         try {
             const { id } = auth.user
             const postData = request.only(['text'])
@@ -24,7 +27,7 @@ class PostController {
     async show({ params: { id }, request, response }) {
         try {
             const post = await Post.findOrFail(id)
-
+        
             response.status(200).send(post)
         } catch (error) {
             response.status(400).send({ message: 'Ocorreu um erro!' })
