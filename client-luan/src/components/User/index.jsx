@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './style.css'
 import { makeStyles } from '@material-ui/core/styles'
 import Avatar from '@material-ui/core/Avatar'
 import Grid from '@material-ui/core/Grid'
+import api from '../../services/api'
 
 const useStyles = makeStyles({
   avatar: {
@@ -19,15 +20,35 @@ const useStyles = makeStyles({
 
 export default () => {
     const classes = useStyles();
+    const [data, setData] = useState([]);
+    const [image, setImage] = useState([]);
+
+    useEffect(() => {
+      async function fetchData() {
+        await api
+          .get(`/users/4`)
+          .then(result =>{
+            setImage(result.data.images)
+            setData(result.data)
+            console.log(image)
+          } )
+      }
+      fetchData();
+        }, []);
 
     return(
         <div className='main-user'>
             <div className='user'>
                 <Grid>
-                    <Avatar alt="" src="" className={classes.bigAvatar} />
+                  {
+                    image != null ? 
+                    <Avatar src={image.url} alt={image.path}  className={classes.bigAvatar} />
+                    : 
+                    <Avatar className={classes.bigAvatar} />
+                  }
                 </Grid>
                 <label>
-                    Nome
+                  {data.first_name} {data.last_name}
                 </label>
                 <div className='logo'>
                     FECHA-MESA
