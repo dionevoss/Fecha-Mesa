@@ -19,10 +19,12 @@ const Route = use('Route')
 Route.group(() => {
     Route.resource('users', 'UserController')
         .apiOnly()
+        .except(['index'])
         .middleware(new Map([
             [['update', 'destroy'],['auth']]
         ]))
 });
+Route.get('/users', 'UserController.show')
 
 Route.group(() => {
     Route.resource('groups', 'GroupController')
@@ -33,7 +35,7 @@ Route.group(() => {
     Route.resource('posts', 'PostController')
         .apiOnly()
         .except(['update'])
-});
+})
 
 Route.group(() => {
     Route.resource('images', 'ImageController')
@@ -44,13 +46,11 @@ Route.group(() => {
         ]))
 })
 
-Route.post('/friend/:id', 'FriendController')
-
-
 Route.get('/images/:path', 'ImageController.show')
 
 Route.post("/auth", "AuthController.login")
 Route.put("/auth", "AuthController.updateToken")
+Route.get('/auth', 'AuthController.GetUser')
 
 
 

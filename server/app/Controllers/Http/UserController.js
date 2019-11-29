@@ -13,7 +13,7 @@ class UserController {
 
     async store({ request, response }) {
         try {
-            const userData = request.only(['first_name', 'last_name', 'email', 'password']);
+            const userData = request.only(['username', 'first_name', 'last_name', 'email', 'password']);
 
             const user = await UserServices.createUser(userData)
             
@@ -29,20 +29,21 @@ class UserController {
             response.status(201).send({ message: 'Regitrado com sucesso!' })
         } catch (error) {
             if (error.errno === 19)
-                response.status(400).send({ message: 'Esse e-mail já esta cadastrado!' });
+                response.status(400).send({ message: 'Esse e-mail ou usuario já esta cadastrado!' });
             else
                 response.status(400).send(error);
         }
     }
 
-    async show({ params: { id }, response }) {
+    async show({ auth, response }) {
         try {
+            const {id} = auth.user
             const user = await User.findOrFail(id)
-
+            
             await user.load('images')
             return user;
         } catch (error) {
-            response.status(400).send(error);
+            response.status(400).send({ message: 'erro'});
         }
     }
 
@@ -52,7 +53,7 @@ class UserController {
         if(user.id !== auth.user.id)
             return response.status(401).send()
 
-        const userData = request.only(['first_name', 'last_name', 'email', 'password']);
+        const userData = request.only(['username', 'first_name', 'last_name', 'email', 'password']);
 
         user.merge(userData);
         await user.save();
