@@ -25,10 +25,11 @@ export default () => {
             setWarning('As senhas não são iguais')
             return
         }
-
+            console.log([username, name, lastName, email, password1])
         try{
-            await api.post('/users', {username: username,first_name: name, last_name: lastName, email: email, password: password1})
+            await api.post('/users', {username: username, first_name: name, last_name: lastName, email: email, password: password1})
             setIsRegister(true)
+            
         } 
         catch(err) {
             console.log(err)

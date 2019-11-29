@@ -56,7 +56,7 @@ export default () => {
                     <ButtonStyle width='150'>
                         <Link to='/login/register'>Cadastrar-se</Link>
                     </ButtonStyle>
-                    <ButtonStyle type='submit' variant="contained" color="primary" width='150' colors='f2f2f2'>
+                    <ButtonStyle onClick={signIn} type='submit' variant="contained" color="primary" width='150' colors='f2f2f2'>
                         <Link>Entrar</Link>
                     </ButtonStyle>
                 </div>
