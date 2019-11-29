@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import {MainFormStyle, FormStyle, TextFormStyle, ButtonStyle} from '../../themes/styled'
 import api from '../../services/api'
 import { login } from '../../services/auth'
-import {Link} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 
 export default () => { 
     const [email, setEmail] = useState('')
@@ -13,15 +13,16 @@ export default () => {
         try {
             setLoading(true)
             const response = await api.post('/auth', {email, password})
-            login(response.data.token)
-            alert('Logado')
-            
+            login(response.data.token)            
         } catch (error) {
             console.log('erooooooooooooo')
             console.log(error)
         }
     }
 
+    if(loading) {
+        return <Redirect to='/' />
+    }
 
     return (
         <MainFormStyle>
@@ -55,7 +56,7 @@ export default () => {
                     <ButtonStyle width='150'>
                         <Link to='/login/register'>Cadastrar-se</Link>
                     </ButtonStyle>
-                    <ButtonStyle type='submit' variant="contained" color="primary" width='150' fontColor='f2f2f2'>
+                    <ButtonStyle type='submit' variant="contained" color="primary" width='150' colors='f2f2f2'>
                         <Link>Entrar</Link>
                     </ButtonStyle>
                 </div>
