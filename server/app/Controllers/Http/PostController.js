@@ -10,6 +10,7 @@ class PostController {
         return await Database
             .table('posts')
             .innerJoin('users', 'posts.id', 'users.id')
+            .orderBy('id', 'DESC')
     }
 
     async store({ auth, request, response }) {
