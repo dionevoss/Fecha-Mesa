@@ -26,11 +26,10 @@ export default () => {
     useEffect(() => {
       async function fetchData() {
         await api
-          .get(`/users/4`)
+          .get(`/users`)
           .then(result =>{
             setImage(result.data.images)
             setData(result.data)
-            console.log(image)
           } )
       }
       fetchData();
