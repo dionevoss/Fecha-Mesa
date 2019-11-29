@@ -11,18 +11,19 @@ export const InputStyle = styled.textarea`
 
 export const MainInput = styled.div`
     height: 135px;
-    width: 100%;
+    max-width: 600px;
     margin: auto;
     margin-bottom: 30px;
     padding: 15px;
     border: none;
     border-radius: 5px;
     background: #eeeeee;
-    max-width: 500px;
 `
 
 export const PaperStyle = styled(Paper)`
     && {
+        margin: auto;
+        max-width: 600px;
         padding: 15px;
         margin-bottom: 10px;
     }
@@ -31,7 +32,6 @@ export const PaperStyle = styled(Paper)`
 export const MainLoaderStyle = styled.div`
     width: 100%;
     height: 500px;
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -46,5 +46,7 @@ export const DateStyle = styled.p`
 `
 
 export const TextStyle = styled.p`
+    border-top: black solid 1px;
+    padding: 5px;
     font-size: 1em;
 `
