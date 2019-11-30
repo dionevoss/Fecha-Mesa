@@ -2,11 +2,13 @@ import React, {useState} from 'react'
 import {Redirect} from 'react-router-dom'
 import {Paper} from '@material-ui/core'
 import {EditeFormStyle, ButtonStyle, SpacingStyle} from './../../themes/styled'
+import { logout } from '../../services/auth';
 
 export default () => {
     const [isExit, setIsExit] = useState(false)
 
     if(isExit) {
+        logout()
         return <Redirect to='/login' />
     }
 
