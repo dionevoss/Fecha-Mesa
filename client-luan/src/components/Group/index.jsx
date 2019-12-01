@@ -13,6 +13,11 @@ export default () => {
         await api.post('/posts', {text: post})
     }
 
+    async function deletePost(id) {
+        await api.delete(`/posts/${id}`)
+        alert('Detado!')
+    }
+
     const handlePosts = async () => {
         await api.get('/posts')
         .then((res) => {
@@ -49,13 +54,14 @@ export default () => {
             </MainInput>
             {
                 users.map(user => (
-                    <PaperStyle id={user.id}>
+                    <PaperStyle key={user.id}>
                         <UserStyle>{user.username}</UserStyle>
                         <DateStyle>Criado: {user.created_at}</DateStyle>
                         <DateStyle>
                             {user.updated_at !== user.created_at ? `Atualizado: ${user.updated_at}` : ''}
                         </DateStyle>
                         <TextStyle>{user.text}</TextStyle>
+                        <Button onClick={() => deletePost(user.id)}>Delete</Button>
                     </PaperStyle>
                 ))
             }
