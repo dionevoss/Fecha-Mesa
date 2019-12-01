@@ -18,7 +18,7 @@ export default () => {
             <EditeFormStyle>
                 <div>
                     <h2>Deseja mesmo sair da sua conta ?</h2>
-                    <ButtonStyle variant="contained" color="primary" widthP='100' onClick={() => setIsExit(!isExit)}>
+                    <ButtonStyle variant="contained" color="primary" widthP="100" onClick={() => setIsExit(!isExit)}>
                         Sim
                     </ButtonStyle>
                 </div>
