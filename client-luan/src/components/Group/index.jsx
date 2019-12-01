@@ -4,8 +4,6 @@ import {MainInput, PaperStyle, MainLoaderStyle, UserStyle, TextStyle, DateStyle,
 import CircularProgress from '@material-ui/core/CircularProgress'
 import Button from '@material-ui/core/Button'
 
-import Moment from 'react-moment';
-
 export default () => {
     const [users, setUsers] = useState([])
     const [post, setPost] = useState([])
@@ -51,11 +49,11 @@ export default () => {
             </MainInput>
             {
                 users.map(user => (
-                    <PaperStyle>
+                    <PaperStyle id={user.id}>
                         <UserStyle>{user.username}</UserStyle>
-                        <DateStyle>Criado: <Moment format="DD/MM/YYYY - HH:mm">{user.created_at}</Moment></DateStyle>
+                        <DateStyle>Criado: {user.created_at}</DateStyle>
                         <DateStyle>
-                            {user.updated_at !== user.created_at ? `Atualização: ${user.updated_at}` : ''}
+                            {user.updated_at !== user.created_at ? `Atualizado: ${user.updated_at}` : ''}
                         </DateStyle>
                         <TextStyle>{user.text}</TextStyle>
                     </PaperStyle>
