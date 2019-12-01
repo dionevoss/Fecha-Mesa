@@ -36,6 +36,7 @@ Route.group(() => {
         .apiOnly()
         .except(['update'])
 })
+Route.put('/posts/:id', 'PostController.update')
 
 Route.get('/images', 'ImageController.index')
 Route.post('/images', 'ImageController.store')
