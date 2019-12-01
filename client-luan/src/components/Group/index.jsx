@@ -4,16 +4,22 @@ import {MainInput, PaperStyle, MainLoaderStyle, UserStyle, TextStyle, DateStyle,
 import CircularProgress from '@material-ui/core/CircularProgress'
 import Button from '@material-ui/core/Button'
 
+import Moment from 'react-moment';
+
 export default () => {
     const [users, setUsers] = useState([])
+    const [post, setPost] = useState([])
     const [loader, setLoader] = useState(true)
+
+    const addPost = async () => {
+        await api.post('/posts', {text: post})
+    }
 
     const handlePosts = async () => {
         await api.get('/posts')
         .then((res) => {
             setUsers(res.data)
             setLoader(false)
-            console.log(res.data)
         })
         .catch((e) => {
             console.log('não foi')
@@ -35,8 +41,11 @@ export default () => {
     return (
         <div>
             <MainInput>
-                <InputStyle placeholder='Crie uma nova postagem' />
-                <Button variant="contained" color="primary">
+                <InputStyle value={post} 
+                onChange={(e) => setPost(e.target.value)} 
+                placeholder='Crie uma nova postagem' 
+                />
+                <Button onClick={addPost} variant="contained" color="primary">
                     Publicar
                 </Button>
             </MainInput>
@@ -44,7 +53,7 @@ export default () => {
                 users.map(user => (
                     <PaperStyle>
                         <UserStyle>{user.username}</UserStyle>
-                        <DateStyle>Criado: {user.created_at}</DateStyle>
+                        <DateStyle>Criado: <Moment format="DD/MM/YYYY - HH:mm">{user.created_at}</Moment></DateStyle>
                         <DateStyle>
                             {user.updated_at !== user.created_at ? `Atualização: ${user.updated_at}` : ''}
                         </DateStyle>
