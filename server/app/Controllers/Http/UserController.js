@@ -28,8 +28,9 @@ class UserController {
 
             response.status(201).send({ message: 'Regitrado com sucesso!' })
         } catch (error) {
+            console.log(error)
             if (error.errno === 19)
-                response.status(400).send({ message: 'Esse e-mail ou usuario já esta cadastrado!' });
+                response.status(400).send('Deu erro');
             else
                 response.status(400).send(error);
         }

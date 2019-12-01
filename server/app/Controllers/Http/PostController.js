@@ -9,7 +9,7 @@ class PostController {
     async index() {
         return await Database
             .table('posts')
-            .innerJoin('users', 'posts.id', 'users.id')
+            .innerJoin('users', 'posts.user_id', 'users.id')
             .orderBy('id', 'DESC')
     }
 
@@ -18,7 +18,7 @@ class PostController {
             const { id } = auth.user
             const postData = request.only(['text'])
 
-            await PostServices.createPost({ ...postData, user_id: id })
+            await PostServices.createPost({ user_id: id, ...postData })
             response.status(201).send({ message: 'Post Criado com sucesso!' })
         } catch (error) {
             response.status(400).send({ message: 'Ocorreu um erro ao criar post'})
