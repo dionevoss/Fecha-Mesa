@@ -14,12 +14,13 @@ class ImageController {
     }
 
     async store({ auth, request, response }) {
+        
         try {
             const fileJar = request.file('images', {
                 types: ['image'],
                 size: '5mb'
             })
-
+            
             if (!fileJar.files) {
                 const file = await imageUpload(fileJar)
                 if (file.moved()) {
@@ -47,7 +48,8 @@ class ImageController {
         return response.download(Helpers.publicPath(`uploads/${params.path}`))
     }
 
-    async update({ params: { id }, response, request }) {
+    async update({ auth, response, request }) {
+        const { id } = auth.user
         const image = await Image.findOrFail(id)
 
         try {

@@ -37,15 +37,9 @@ Route.group(() => {
         .except(['update'])
 })
 
-Route.group(() => {
-    Route.resource('images', 'ImageController')
-        .apiOnly()
-        .except('show')
-        .middleware(new Map([
-            [['store', 'update', 'destroy'], ['auth']]
-        ]))
-})
-
+Route.get('/images', 'ImageController.index')
+Route.post('/images', 'ImageController.store')
+Route.put('/images', 'ImageController.update').middleware('auth')
 Route.get('/images/:path', 'ImageController.show')
 
 Route.post("/auth", "AuthController.login")
