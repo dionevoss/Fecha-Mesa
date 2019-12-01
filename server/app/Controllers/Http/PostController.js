@@ -25,7 +25,7 @@ class PostController {
         }
     }
 
-    async show({ params: { id }, request, response }) {
+    async show({ params: { id }, response }) {
         try {
             const post = await Post.findOrFail(id)
         
@@ -44,7 +44,6 @@ class PostController {
 
         try {
             const postData = request.only(['text'])
-            console.log(postData)
             post.merge(postData)
             await post.save()
         
@@ -54,8 +53,19 @@ class PostController {
         }
     }
 
-    async destroy() {
+    async destroy({ params: { id }, response, auth}) {
+        const post = await Post.findOrFail(id);
 
+        if(post.user_id !== auth.user.id)
+            return response.status(401).send()
+
+        try {
+            await post.delete();
+
+            response.status(200).send({ message: 'Usuario excluido com sucesso.' })
+        } catch (error) {
+            response.status(400).send({ message: 'Não foi possivel deletar usuario.' });
+        }
     }
 }
 
