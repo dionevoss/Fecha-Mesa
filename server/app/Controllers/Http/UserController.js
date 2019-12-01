@@ -48,7 +48,8 @@ class UserController {
         }
     }
 
-    async update({ params: { id }, auth, request, response } ) {
+    async update({auth, request, response } ) {
+        const { id } = auth.user
         const user = await User.findOrFail(id)
 
         if(user.id !== auth.user.id)
