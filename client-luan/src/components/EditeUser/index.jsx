@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import {InputStyled, MainStyled, ImageStyled, PhotoCameraStyled} from './styled'
+import React, { useState, useEffect } from 'react'
+import {InputStyled, MainStyled, ImageStyled, PhotoCameraStyled, AlignStyled} from './styled'
 import {ButtonStyle} from './../../themes/styled'
 import Paper from '@material-ui/core/Paper'
 import IconButton from '@material-ui/core/IconButton'
@@ -11,9 +11,20 @@ export default () => {
     const [name, setName] = useState(undefined)
     const [lastName, setLastName] = useState(undefined)
     const [email, setEmail] = useState(undefined)
-    const [oldPassword, setOldPassword] = useState([])
     const [newPassword1, setNewPassword1] = useState([])
     const [newPassword2, setNewPassword2] = useState([])
+    const [user, setUser] = useState()
+
+    const fetchData = async () => {
+        await api
+            .get(`/users`)
+            .then(result =>{
+                setUser(result.data)
+                setName(result.data.first_name)
+                setLastName(result.data.last_name)
+                setEmail(result.data.email)
+            } )
+    }
 
     const updateUser = async () => {
         console.log(name)
@@ -47,6 +58,10 @@ export default () => {
         }
     }
 
+    useEffect(() => {
+        fetchData()
+    }, [])
+
     return (
         <Paper>
             <ImageStyled>
@@ -61,9 +76,12 @@ export default () => {
                     </IconButton>
                 </label>
             </ImageStyled>
-            <ButtonStyle onClick={uploadImage} variant="contained" color="primary" width='300'>
+
+            <AlignStyled>
+                <ButtonStyle onClick={uploadImage} variant="contained" color="primary" width='300'>
                     upload
-            </ButtonStyle>
+                </ButtonStyle>
+            </AlignStyled>
 
             <MainStyled>
                 <h2>Nome e E-mail</h2>
@@ -79,7 +97,6 @@ export default () => {
 
             <MainStyled>
                 <h2>Senha</h2>
-                <InputStyled value={oldPassword} onChange={(e) => setOldPassword(e.target.value)} label='Senha atual' />
                 <InputStyled value={newPassword1} onChange={(e) => setNewPassword1(e.target.value)} label='Nova senha' />
                 <InputStyled value={newPassword2} onChange={(e) => setNewPassword2(e.target.value)} label='Confirme a senha' />
                 <ButtonStyle onClick={updatePassword} variant="contained" color="primary" width='300'>

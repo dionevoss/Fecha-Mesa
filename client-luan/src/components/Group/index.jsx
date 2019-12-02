@@ -3,6 +3,7 @@ import api from './../../services/api'
 import {MainInput, PaperStyle, MainLoaderStyle, UserStyle, TextStyle, DateStyle, InputStyle} from './style'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import Button from '@material-ui/core/Button'
+import Moment from 'react-moment';
 
 export default () => {
     const [users, setUsers] = useState([])
@@ -18,9 +19,6 @@ export default () => {
                 setUserId(result.data.id)
           } )
       }
-
-    const verificPostUser = () => {
-    } 
 
     const addPost = async () => {
         setPost('')
@@ -74,12 +72,12 @@ export default () => {
                 users.map(user => (
                     <PaperStyle key={user.id}>
                         <UserStyle>{user.username}</UserStyle>
-                        <DateStyle>Criado: {user.created_at}</DateStyle>
+                        <DateStyle>Criado: <Moment format="DD/MM">{user.created_at}</Moment></DateStyle>
                         <DateStyle>
-                            {user.updated_at !== user.created_at ? `Atualizado: ${user.updated_at}` : ''}
+                            {user.updated_at !== user.created_at ? <Moment format='DD/MM'>`Atualizado: ${user.updated_at}`</Moment> : ''}
                         </DateStyle>
                         <TextStyle>{user.text}</TextStyle>
-                        {userId == user.user_id ? <Button onClick={() => deletePost(user.id)}>Delete</Button> : ''}
+                        {userId === user.user_id ? <Button onClick={() => deletePost(user.id)}>Delete</Button> : ''}
                     </PaperStyle>
                 ))
             }

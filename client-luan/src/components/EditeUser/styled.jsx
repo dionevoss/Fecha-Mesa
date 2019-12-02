@@ -36,3 +36,7 @@ export const ImageStyled = styled.div`
     margin-top: 20px;
     margin-bottom: 20px;
 `
+
+export const AlignStyled = styled.div`
+    text-align: center;
+`
