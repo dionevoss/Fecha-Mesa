@@ -8,14 +8,30 @@ export default () => {
     const [users, setUsers] = useState([])
     const [post, setPost] = useState([])
     const [loader, setLoader] = useState(true)
+    const [realond, setReloand] = useState(false)
+    const [userId, setUserId] = useState()
+
+    const fetchData = async () => {
+        await api
+          .get(`/users`)
+          .then(result =>{
+                setUserId(result.data.id)
+          } )
+      }
+
+    const verificPostUser = () => {
+    } 
 
     const addPost = async () => {
+        setPost('')
         await api.post('/posts', {text: post})
+        setReloand(!realond)
     }
 
     async function deletePost(id) {
         await api.delete(`/posts/${id}`)
         alert('Detado!')
+        setReloand(!realond)
     }
 
     const handlePosts = async () => {
@@ -30,8 +46,9 @@ export default () => {
     }
 
     useEffect(() => {
+        fetchData()
         handlePosts()
-    }, [])
+    }, [realond])
 
     if(loader) {
         return (
@@ -43,6 +60,7 @@ export default () => {
 
     return (
         <div>
+            
             <MainInput>
                 <InputStyle value={post} 
                 onChange={(e) => setPost(e.target.value)} 
@@ -61,7 +79,7 @@ export default () => {
                             {user.updated_at !== user.created_at ? `Atualizado: ${user.updated_at}` : ''}
                         </DateStyle>
                         <TextStyle>{user.text}</TextStyle>
-                        <Button onClick={() => deletePost(user.id)}>Delete</Button>
+                        {userId == user.user_id ? <Button onClick={() => deletePost(user.id)}>Delete</Button> : ''}
                     </PaperStyle>
                 ))
             }
