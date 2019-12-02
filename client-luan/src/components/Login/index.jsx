@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {MainFormStyle, FormStyle, TextFormStyle, ButtonStyle} from '../../themes/styled'
 import api from '../../services/api'
 import { login } from '../../services/auth'
@@ -8,17 +8,21 @@ export default () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [loading, setLoading] = useState(false)
+    const [isError, setIsError] = useState(false)
 
     const signIn = async () => {
         try {
-            setLoading(true)
             const response = await api.post('/auth', {email, password})
-            login(response.data.token)            
+            login(response.data.token)
+            setIsError(false) 
+            setLoading(true)         
         } catch (error) {
-            console.log('erooooooooooooo')
-            console.log(error)
+            setIsError(true)
         }
     }
+
+    useEffect(() => {
+    }, [loading])
 
     if(loading) {
         return <Redirect to='/' />
@@ -31,6 +35,7 @@ export default () => {
                 <h1>LOGIN</h1>
                 <div>
                     <TextFormStyle 
+                        error={isError}
                         type='email' 
                         id="standard-basic" 
                         label="E-mail" 
@@ -42,6 +47,7 @@ export default () => {
 
                 <div>
                     <TextFormStyle 
+                        error={isError}
                         id="standard-password-input" 
                         label="Senha" 
                         type="password" 
