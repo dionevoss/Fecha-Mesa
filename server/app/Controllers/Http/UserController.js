@@ -41,7 +41,9 @@ class UserController {
             const {id} = auth.user
             const user = await User.findOrFail(id)
             
-            await user.load('images')
+            await user.loadMany({
+                images: (builder) => builder.orderBy('id', 'DESC')
+              })
             return user;
         } catch (error) {
             response.status(400).send({ message: 'erro'});
