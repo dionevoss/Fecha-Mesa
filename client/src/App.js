@@ -1,14 +1,24 @@
-import React, { Component } from 'react';
-import "./styles/global";
-import Routes from './services/routes';
+import React from 'react';
+import './style-global.css'
+import {BrowserRouter, Switch, Route} from 'react-router-dom'
+import Home from './pages/Home'
+import Identification from './pages/Indetification'
+import Post from './components/EditePost'
+import { MuiThemeProvider } from '@material-ui/core/styles';
+import color from './color'
 
-class App extends Component {
-    render() {
-        return(
-            <Routes />
-        );
-    }
-
+const App = () => {
+    return(
+        <MuiThemeProvider theme={color}>
+            <BrowserRouter>
+                <Switch> 
+                    <Route exact path='/' component={Home} />
+                    <Route path='/login' component={Identification} />
+                    <Route exact path='/post/:id' component={Post} />
+                </Switch>
+            </BrowserRouter>
+        </MuiThemeProvider>
+    )
 }
 
 export default App;
