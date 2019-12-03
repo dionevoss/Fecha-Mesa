@@ -3,7 +3,8 @@ import api from './../../services/api'
 import {MainInput, PaperStyle, MainLoaderStyle, UserStyle, TextStyle, DateStyle, InputStyle} from './style'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import Button from '@material-ui/core/Button'
-import Moment from 'react-moment';
+import Moment from 'react-moment'
+import {Redirect} from 'react-router-dom'
 
 export default () => {
     const [users, setUsers] = useState([])
@@ -11,6 +12,8 @@ export default () => {
     const [loader, setLoader] = useState(true)
     const [realond, setReloand] = useState(false)
     const [userId, setUserId] = useState()
+    const [postId, setPostId] = useState()
+    const [redirectPost, setRedirectPost] = useState(false)
 
     const fetchData = async () => {
         await api
@@ -43,6 +46,11 @@ export default () => {
         })
     }
 
+    const openPost = (id) => {
+        setPostId(id)
+        setRedirectPost(true)
+    }
+
     useEffect(() => {
         fetchData()
         handlePosts()
@@ -54,6 +62,10 @@ export default () => {
                 <CircularProgress />
             </MainLoaderStyle>
         )
+    }
+
+    if(redirectPost) {
+        return <Redirect to={`/post/${postId}`} />
     }
 
     return (
@@ -77,7 +89,8 @@ export default () => {
                             {user.updated_at !== user.created_at ? <Moment format='DD/MM'>`Atualizado: ${user.updated_at}`</Moment> : ''}
                         </DateStyle>
                         <TextStyle>{user.text}</TextStyle>
-                        {userId === user.user_id ? <Button onClick={() => deletePost(user.id)}>Delete</Button> : ''}
+                        {userId === user.user_id ? <Button color='primary' onClick={() => deletePost(user.id)}>Delete</Button> : ''}
+                        {userId === user.user_id ? <Button color='secondary' onClick={() => openPost(user.id)}>Edit</Button> : ''}
                     </PaperStyle>
                 ))
             }
