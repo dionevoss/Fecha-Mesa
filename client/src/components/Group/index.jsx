@@ -39,7 +39,9 @@ export default () => {
         await api.get('/posts')
         .then((res) => {
             setUsers(res.data)
-            setLoader(false)
+            setTimeout(function() {
+                setLoader(false)
+            }.bind(this), 2000)
         })
         .catch((e) => {
             console.log('não foi')
