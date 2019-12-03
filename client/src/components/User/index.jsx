@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Avatar from '@material-ui/core/Avatar'
 import Grid from '@material-ui/core/Grid'
 import api from '../../services/api'
+import logo from './logo.png'
 
 const useStyles = makeStyles({
   avatar: {
@@ -50,7 +51,7 @@ export default () => {
                   {data.first_name} {data.last_name}
                 </label>
                 <div className='logo'>
-                    FECHA-MESA
+                  <img height="150" src={logo} alt="Minha Figura" />	
                 </div>
             </div>
             
