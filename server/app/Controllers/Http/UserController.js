@@ -17,20 +17,18 @@ class UserController {
 
             const user = await UserServices.createUser(userData)
             
-            /*
             await Mail.send('emails.welcome', { userData }, (message) => {
                 message
                     .to(user.email)
                     .from('no-reply@fechamesa.com')
                     .subject('Bem vindo')
-            })
-            */
+            })      
 
             response.status(201).send({ message: 'Regitrado com sucesso!' })
         } catch (error) {
-            console.log(error)
-            if (error.errno === 19)
-                response.status(400).send('Deu erro');
+            if (error.errno === 19){
+                response.status(400).send('E-Mail já registrado!')
+            }
             else
                 response.status(400).send(error);
         }

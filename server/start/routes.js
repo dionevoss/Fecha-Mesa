@@ -16,31 +16,17 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
-Route.group(() => {
-    Route.resource('users', 'UserController')
-        .apiOnly()
-        .except(['index', 'update'])
-        .middleware(new Map([
-            [['destroy'],['auth']]
-        ]))
-});
-Route.put('/users', 'UserController.update')
 Route.get('/users', 'UserController.show')
+Route.post('/users', 'UserController.store')
+Route.put('/users', 'UserController.update')
+Route.delete('/users', 'UserController.destroy')
 
-Route.group(() => {
-    Route.resource('groups', 'GroupController')
-        .apiOnly()
-}).middleware('auth');
-
-Route.group(() => {
-    Route.resource('posts', 'PostController')
-        .apiOnly()
-        .except(['update', 'destroy'])
-})
+Route.get('/posts', 'PostController.index')
+Route.get('/posts/:id', 'PostController.show')
+Route.post('/posts', 'PostController.store')
 Route.delete('/posts/:id', 'PostController.destroy')
 Route.put('/posts/:id', 'PostController.update')
 
-Route.get('/images', 'ImageController.index')
 Route.post('/images', 'ImageController.store')
 Route.put('/images', 'ImageController.update').middleware('auth')
 Route.get('/images/:path', 'ImageController.show')
@@ -48,9 +34,3 @@ Route.get('/images/:path', 'ImageController.show')
 Route.post("/auth", "AuthController.login")
 Route.put("/auth", "AuthController.updateToken")
 Route.get('/auth', 'AuthController.GetUser')
-
-
-
-Route.post('/groups/:id/members', 'MemberController.store')
-Route.get('/members', 'MemberController.index')
-Route.get('/members/:id', 'MemberController.show')
