@@ -28,6 +28,7 @@ export default () => {
             console.log([username, name, lastName, email, password1])
         try{
             await api.post('/users', {username: username, first_name: name, last_name: lastName, email: email, password: password1})
+            alert('Usuario registrado com sucesso!')
             setIsRegister(true)
             
         } 

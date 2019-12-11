@@ -31,7 +31,7 @@ export default () => {
 
     async function deletePost(id) {
         await api.delete(`/posts/${id}`)
-        alert('Detado!')
+        alert('Deletado!')
         setReloand(!realond)
     }
 
